@@ -2,7 +2,7 @@
 
 import os
 import sys
-import imp
+import importlib as imp
 import inspect
 import binwalk.core.common
 import binwalk.core.settings
@@ -166,7 +166,7 @@ class Plugins(object):
                         module = file_name[:-len(self.MODULE_EXTENSION)]
 
                         try:
-                            plugin = imp.load_source(module, os.path.join(plugins[key]['path'], file_name))
+                            plugin = imp.machinery.SourceFileLoader(module, os.path.join(plugins[key]['path'], file_name)).load_module()
                             plugin_class = self._find_plugin_class(plugin)
 
                             plugins[key]['enabled'][module] = True
@@ -200,7 +200,7 @@ class Plugins(object):
                 continue
 
             try:
-                plugin = imp.load_source(module, file_path)
+                plugin = imp.machinery.SourceFileLoader(module, file_path).load_module()
                 plugin_class = self._find_plugin_class(plugin)
 
                 class_instance = plugin_class(self.parent)
