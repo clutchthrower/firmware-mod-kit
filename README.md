@@ -64,6 +64,20 @@ There is a AUR package for <https://aur.archlinux.org/packages/firmware-mod-kit/
 
 For other distros, you should install the equivalent packages using your distro's package manager.
 
+```sh
+git clone https://github.com/rampageX/firmware-mod-kit.git
+cd firmware-mod-kit/src
+make
+```
+
+Binwalk 2.1.1
+
+```sh
+[Back in firmware-mod-kit directory]
+cd src/binwalk-2.1.1
+sudo python2 setup.py install
+```
+
 The Firmware Mod Kit is **only supported on the Linux platform**. With a few small modifications, it should work on other POSIX platforms.
 
 ## Using the Kit ##
